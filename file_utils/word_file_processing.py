@@ -10,7 +10,6 @@ Thus, it is recommended to convert them to .docx before processing."""
 from docx2txt import process
 from winreg import OpenKey, CloseKey, HKEY_CLASSES_ROOT
 from win32com.client import Dispatch
-from gui import InfoDialog
 
 
 def process_docx_files(files: list[str]) -> list[str]:
@@ -46,9 +45,8 @@ def process_doc_files(doc_files: list[str]) -> list[str]:
         program = Dispatch("kwps.Application")
 
     else:
-        print("no compatible program found")
-        InfoDialog(title="No necessary program installed!",
-                   message="Please install MS Word or WPS Kingosoft suite.")
+        print("No compatible program found to process .doc files, "
+              "please convert them to .docx before continuing.")
         return []
 
     extracted_text: list[str] = []

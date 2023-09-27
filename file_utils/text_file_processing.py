@@ -5,6 +5,8 @@ from csv import reader
 from chardet import detect_all
 from xml.etree.ElementTree import parse as parse_xml
 import pysrt
+from nltk.data import load
+from nltk.tokenize.punkt import PunktSentenceTokenizer
 from bs4 import BeautifulSoup
 from file_utils.pdf_file_processing import tokenize_text
 
@@ -35,7 +37,8 @@ def process_text_files(text_files: list[str]) -> list[str]:
             extracted_text.extend(_process_html(text_file))
 
         elif text_file.endswith(".srt"):
-            extracted_text.extend(_process_srt(text_file))
+            tokenizer = load("tokenizers/punkt/english.pickle")
+            extracted_text.extend(_process_srt(text_file, tokenizer))
 
         else:
             extracted_text.extend(_default_file_process(text_file))
@@ -135,7 +138,7 @@ def _process_html(file: str) -> list[str]:
     return soup.get_text(separator="\n").split("\n")
 
 
-def _process_srt(file: str) -> list[str]:
+def _process_srt(file: str, tokenizer: PunktSentenceTokenizer) -> list[str]:
     """Extracts and tokenizes text into sentences from an .srt file.
 
     Args:
@@ -146,6 +149,5 @@ def _process_srt(file: str) -> list[str]:
 
     srt_file = pysrt.open(file)
     subtitles: list[str] = [(sub.text).replace("\n", " ") for sub in srt_file]
-    extracted_text = " ".join(subtitles)
 
-    return tokenize_text(extracted_text)
+    return tokenize_text(subtitles, tokenizer)

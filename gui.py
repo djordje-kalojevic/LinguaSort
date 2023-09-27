@@ -1,10 +1,8 @@
-from dataclasses import dataclass
 import pickle
 from typing import Optional
 from PyQt6.QtWidgets import (QApplication, QWidget, QListWidget, QVBoxLayout,
                              QHBoxLayout, QLineEdit, QPushButton, QCheckBox,
-                             QLabel, QListWidgetItem, QStyle,
-                             QFormLayout, QMessageBox, QDialog)
+                             QLabel, QListWidgetItem, QStyle, QFormLayout)
 from PyQt6.QtCore import Qt, QSize
 from lingua import Language
 from qdarktheme import setup_theme
@@ -228,23 +226,3 @@ def settings_selection(theme: Optional[str] = None) -> tuple[list[Language], dic
     selected_languages = [languages_data[l] for l in window.selected_languages]
 
     return selected_languages, window.selected_settings, window.operation_type
-
-
-@dataclass
-class InfoDialog(QDialog):
-
-    def __init__(self, message, title: str = " "):
-        super().__init__()
-        self.setWindowTitle(title)
-        self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint)
-        self.setFixedSize(400, 150)
-
-        self.message_label = QLabel(message, self)
-        self.message_label.setWordWrap(True)
-
-        self.message_box = QMessageBox(self)
-        self.message_box.setIcon(QMessageBox.Icon.Information)
-        self.message_box.setText(message)
-        self.message_box.setWindowTitle(title)
-
-        self.message_box.exec()

@@ -92,7 +92,7 @@ def _remove_hyperlinks(series: Series) -> Series:
     return series.replace(pattern, None, regex=True)
 
 
-def save_report(processed_text: Series, predictions: Optional[Series]) -> None:
+def save_report(processed_text: Series, predictions: Optional[Series] = None) -> None:
     """Saves extracted text, along with any language predictions, if there were any.
     Currently this is saved to a Excel file.
 
