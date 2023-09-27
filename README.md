@@ -47,4 +47,4 @@ As part of my job responsibilities, I was assigned the task of extracting and so
 Contributions are welcome! If you encounter any issues or have suggestions for improvements, please feel free to submit an issue or pull request right here on GitHub!
 
 ---
-*Disclaimer: LinguaSort utilizes the Lingua language detector to support a wide range of languages. For more information about Lingua and its supported languages, please visit the [Lingua GitHub repository]((https://github.com/pemistahl/lingua-py)).*
+*Disclaimer: LinguaSort utilizes the Lingua language detector to support a wide range of languages. For more information about Lingua and its supported languages, please visit the Lingua Language Detector [GitHub repository](https://github.com/pemistahl/lingua-py).*
