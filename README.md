@@ -33,7 +33,7 @@ There are two ways of accessing LinguaSort:
 2. **Import the library and use it to process your files:**
 
    ```python
-   from linguasort import lingua_sorter
+   from lingua_sort import lingua_sorter
 
    lingua_sorter()
    ```
